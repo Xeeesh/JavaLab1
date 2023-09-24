@@ -1,4 +1,4 @@
-
+import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         //str_rev("leps spel1");
@@ -66,24 +66,22 @@ public class Main {
     }
 
     public static void sep_print(int num) {
-        //Создание
-        int arr[] = new int[num - 2];
-        for (int i = 0; i < num - 2; i++) {
-            arr[i] = i + 2;
-        }
+        boolean[] isPrime = new boolean[num];
+        Arrays.fill(isPrime, true);
 
-        //Обработка
-        for(int i = 0; Math.pow(i, 2) < num || arr[i] != 0; i++) {
-            for(int j = 2; j * i < num; j++) {
-                arr[arr[i] * j] = 0;
+        for (int i = 2; i * i < num; i++) {
+            if (isPrime[i]) {
+                for (int j = 2 * i; j < num; j += i) {
+                    isPrime[j] = false;
+                }
             }
         }
 
-        //Вывод
-        for(int i = 0; i < num; i++) {
-            System.out.print(arr[i]);
+        for (int i = 2; i < num; i++) {
+            if (isPrime[i]) {
+                System.out.println(i);
+            }
         }
-
         return;
     }
 }
