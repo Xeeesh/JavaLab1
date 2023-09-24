@@ -1,10 +1,12 @@
 
 public class Main {
     public static void main(String[] args) {
+        //str_rev("leps spel1");
         //Pereb();
         //System.out.print(fib(5));
         //fib_print(10);
-        System.out.print(fact(3));
+        //System.out.print(fact(3));
+        sep_print(30);
     }
     public static void iterate() {
         for (int a = 1; a <= 500; a++) {
@@ -19,14 +21,13 @@ public class Main {
         }
     }
 
-    /*
-    public static String str_rev(String str) {
-        int ln = str.length();
-
-        return NewStr;
+    public static void str_rev(String str) {
+        int ln = str.length() - 1;
+        for(int i = ln; i >= 0; i--) {
+            System.out.print(str.charAt(i));
+        }
+        return;
     }
-
-     */
 
     public  static int[] fib(int num) {
         int[] fib_arr;
@@ -65,15 +66,22 @@ public class Main {
     }
 
     public static void sep_print(int num) {
+        //Создание
         int arr[] = new int[num - 2];
         for (int i = 0; i < num - 2; i++) {
             arr[i] = i + 2;
         }
-        
-        int i = 2;
-        while (Math.pow(i, 2) < num) {
 
-            i++;
+        //Обработка
+        for(int i = 0; Math.pow(i, 2) < num || arr[i] != 0; i++) {
+            for(int j = 2; j * i < num; j++) {
+                arr[arr[i] * j] = 0;
+            }
+        }
+
+        //Вывод
+        for(int i = 0; i < num; i++) {
+            System.out.print(arr[i]);
         }
 
         return;
